@@ -3,7 +3,6 @@ package com.masai.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ChatRequest {
 
 	private String model;
@@ -11,6 +10,14 @@ public class ChatRequest {
 	private int n;
 	private double temperature;
 
+	/**
+	 * this constructor is used to create a ChatRequest object, which represents a
+	 * request for a chat conversation. It initializes the model field, sets up an
+	 * initial user message, and prepares the messages list to hold the
+	 * conversation's messages. The constructor essentially helps in setting up the
+	 * initial state of a ChatRequest object with the provided model and user
+	 * prompt.
+	 */
 	public ChatRequest(String model, String prompt) {
 		this.model = model;
 

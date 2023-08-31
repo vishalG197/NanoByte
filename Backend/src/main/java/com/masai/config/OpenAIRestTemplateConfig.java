@@ -12,19 +12,23 @@ public class OpenAIRestTemplateConfig {
 	@Value("${openai.api.key}")
 	private String openaiApiKey;
 
-	
-	/*
-	 * Here, we added an interceptor to the base RestTemplate and added the
-	 * Authorization header.
+	/**
+	 * Creates and configures a RestTemplate instance for interacting with the
+	 * OpenAI API.
+	 *
+	 * @return An instance of RestTemplate configured with necessary settings.
 	 */
 	@Bean
 	@Qualifier("openaiRestTemplate")
 	public RestTemplate openaiRestTemplate() {
+
+		/** Add an interceptor to set the Authorization header with the API key */
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.getInterceptors().add((request, body, execution) -> {
 			request.getHeaders().add("Authorization", "Bearer " + openaiApiKey);
 			return execution.execute(request, body);
 		});
+
 		return restTemplate;
 	}
 }
