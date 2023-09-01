@@ -154,12 +154,12 @@ public class ChatController {
 		for (Map<String, String> questionAndAnswer : QuestionsAndAnswers) {
 			String question = questionAndAnswer.get("question");
 			String answer = questionAndAnswer.get("answer");
-			promptBuilder.append("Q: ").append(question).append("\n");
-			promptBuilder.append("A: ").append(answer).append("\n\n");
+			promptBuilder.append("Question: ").append(question).append("\n");
+			promptBuilder.append("My Answer: ").append(answer).append("\n\n");
 		}
 
 		promptBuilder.append(
-				"judge me based on the answers on the scale of 10, If I didn't provide logical explaination just write You have not provided a logical Explaintion for that partical question and always give marks from 1-10");
+				"judge me based on the answers on the scale of 10, If I didn't provide logical explaination just write You have not provided a logical Explaintion for that particular question and always give marks from 1-10");
 
 		return ResponseEntity.ok(chat(promptBuilder.toString()));
 	}
