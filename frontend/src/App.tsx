@@ -1,12 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import CameraAndSpeechToText from './components/Speech_Text';
-
+import AllRoutes from './components/AllRoutes';
+import Navbar from './components/Navbar';
+// import CameraAndSpeechToText from './components/Speech_Text';
+import ModalLoginForm from "./components/ModelLogin"
 function App() {
   return (
     <div className="App">
-       <CameraAndSpeechToText />
+  
+      <Navbar/> 
+     <AllRoutes/>
     </div>
   );
 }
