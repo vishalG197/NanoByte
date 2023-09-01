@@ -41,5 +41,11 @@ public class ChatController {
 		/** return the first response */
 		return response.getChoices().get(0).getMessage().getContent();
 	}
+	
+	@GetMapping("/login")
+		public String loginHandler() {
+		return "Welcome";
+	}
+	
 
 }
