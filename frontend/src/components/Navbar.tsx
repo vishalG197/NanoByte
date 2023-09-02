@@ -4,14 +4,16 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginFailure, LoginSuccess } from '../Redux/Authentication/action';
 import logo from "./logo2.png"
+import axios from 'axios';
 const Navbar = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const isAuth = useSelector((state:any) => state.AuthReducer.isAuth);
   const dispatch = useDispatch();
 
   const handleLogin = () => {
-   
-    dispatch(LoginSuccess());
+    // window.location.href = 'http://localhost:8080/login';
+    axios.get("http://localhost:8080/login").then((res)=>console.log(res.data)).catch((err)=>console.log(err.message));
+    // dispatch(LoginSuccess());
   };
 
   return (

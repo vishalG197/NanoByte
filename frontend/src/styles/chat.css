@@ -1,0 +1,130 @@
+/* Container */
+.chat-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 20px;
+   background-color: #f0f0f0;
+   border-radius: 10px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+ }
+ 
+ /* Question */
+ h2 {
+   font-size: 24px;
+   margin-bottom: 10px;
+ }
+ 
+ p {
+   font-size: 18px;
+   margin-bottom: 20px;
+   padding: 10px;
+   background-color: #fff;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+ }
+ 
+ /* Answer Textarea */
+ textarea {
+   width: 100%;
+   padding: 10px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   resize: none;
+   margin-bottom: 20px;
+ }
+ 
+ /* Buttons */
+ button {
+   padding: 10px 20px;
+   font-size: 18px;
+   margin-right: 10px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   background-color: #007bff;
+   color: #fff;
+   transition: background-color 0.3s ease-in-out;
+ }
+ 
+ button:hover {
+   background-color: #0056b3;
+ }
+ 
+ /* Evaluation */
+ h2 + p {
+   font-size: 18px;
+   background-color: #f0f0f0;
+   padding: 10px;
+   border-radius: 5px;
+ }
+ 
+ /* Creative Animation Example (Add more animations as desired) */
+ @keyframes slide-in {
+   from {
+     transform: translateX(-100%);
+   }
+   to {
+     transform: translateX(0);
+   }
+ }
+ 
+ .slide-in-animation {
+   animation: slide-in 0.5s ease-in-out;
+ }
+ 
+ /* Add more creative animations and styling as needed */
+ 
+/* Creative Animations */
+@keyframes slide-in {
+   from {
+     transform: translateX(-100%);
+   }
+   to {
+     transform: translateX(0);
+   }
+ }
+ 
+ @keyframes fade-in {
+   from {
+     opacity: 0;
+   }
+   to {
+     opacity: 1;
+   }
+ }
+ 
+ @keyframes bounce-in {
+   0% {
+     transform: scale(0);
+   }
+   70% {
+     transform: scale(1.2);
+   }
+   100% {
+     transform: scale(1);
+   }
+ }
+ 
+ .speech-recognition {
+   margin-top: 20px;
+   display: flex;
+   align-items: center;
+ }
+ 
+ .speech-recognition button {
+   background-color: #007bff;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   padding: 10px;
+   cursor: pointer;
+   margin-right: 10px;
+ }
+ 
+ .speech-recognition span {
+   margin-left: 10px;
+ }
+ 
