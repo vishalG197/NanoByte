@@ -1,0 +1,61 @@
+/* Banner Container */
+.banner-container {
+   display: flex;
+   height: 90vh;
+  
+ }
+ 
+ /* Image Side */
+ .image-side {
+   width: 60%;
+   height: 100%;
+   margin-top:100px;
+   overflow: hidden;
+   position: relative;
+   border:1px silid red;
+ }
+ 
+ .image-side img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover; /* Ensure the image covers the entire space */
+ }
+ 
+ /* Content Side */
+ .content-side {
+   width: 40%;
+   padding: 20px;
+   margin-top:100px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-color: #fff; /* Set your desired background color */
+ }
+ 
+ /* Heading Style */
+ h1 {
+   font-size: 30px; /* Adjust font size as needed */
+   margin: 0;
+ }
+ 
+ /* Tagline Style */
+ p {
+   font-size: 20px; /* Adjust font size as needed */
+   margin: 10px 0;
+ }
+ 
+ /* Action Button Style */
+ .action-button {
+   background-color: #6bcbef; 
+   color: black; 
+   border: none;
+   padding: 10px 20px;
+   font-size: 20px; 
+   cursor: pointer;
+ }
+ 
+ .action-button:hover {
+   background-color: #7de6b1; /* Adjust button color on hover */
+ }
+ 

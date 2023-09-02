@@ -13,11 +13,14 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "annyang": "^2.6.1",
+    "axios": "^1.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.15.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^2.1.3",
+    "react-speech-recognition": "^3.10.0",
     "react-webcam": "^7.1.1",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
@@ -50,6 +53,7 @@
     ]
   },
   "devDependencies": {
-    "@types/annyang": "^2.6.2"
+    "@types/annyang": "^2.6.2",
+    "@types/react-speech-recognition": "^3.9.2"
   }
 }
