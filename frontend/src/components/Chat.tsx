@@ -3,29 +3,27 @@ import { AiOutlineAudio } from 'react-icons/ai';
 import '../styles/chat.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
 const ChatComponent = () => {
   const { id } = useParams();
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const [evaluation, setEvaluation] = useState('');
-  const [section, setSection] = useState(''); // Set the section you want to fetch questions for
+  const [section, setSection] = useState('');
   const [listening, setListening] = useState(false);
   const [transcript, setTranscript] = useState('');
-  const [error, setError] = useState('');
 
   useEffect(() => {
     if (id === '1') {
+      generateOpenAIResponse("one mern random interview quation")
       setSection('mern');
     } else if (id === '2') {
       setSection('java');
     } else {
       setSection('nodejs');
     }
-
     fetchRandomQuestion();
-  }, [id]);
+  }, [section, id]);
 
   useEffect(() => {
     if (listening) {
@@ -34,63 +32,63 @@ const ChatComponent = () => {
       stopListening();
     }
   }, [listening]);
-console.log(error)
+
   const fetchRandomQuestion = () => {
-    axios.get("http://localhost:8080/api/questions/mern").then((res)=>console.log(res)).catch((err) => console.log(err));
-    fetch(`http://localhost:8080/api/questions/mern`)
+    axios
+      .get(`http://localhost:8080/questions/${section}`)
       .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.text(); // Parse response text
-      })
-      .then((data) => {
-        console.log(error,data)
-        setQuestion(data);
-        setError(''); // Clear any previous error
+        setQuestion(response.data);
       })
       .catch((error) => {
-        setError('Fetch error: ' + error.message);
+        console.error('Fetch error:', error);
+      });
+  };
+
+  const generateOpenAIResponse = (userMessage:string) => {
+    // Replace 'YOUR_OPENAI_API_KEY' with your actual OpenAI API key
+    const apiKey = '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';
+
+    const data = {
+      prompt: userMessage,
+      max_tokens: 50, // Adjust the max tokens as needed
+    };
+
+    axios
+      .post('https://api.openai.com/v1/engines/gpt-3.5-turbo/completions', data, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`,
+        },
+      })
+      .then((response) => {
+        const generatedResponse = response.data.choices[0].text;
+        setQuestion(generatedResponse);
+      })
+      .catch((error) => {
+        console.error('OpenAI API error:', error);
       });
   };
 
   const submitAnswer = () => {
-    fetch('http://localhost:8080/api/answer', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ response: answer }),
-    })
+    axios
+      .post('http://localhost:8080/answer', { answer })
       .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.text(); // Parse response text
-      })
-      .then((data) => {
-        setEvaluation(data);
+        setEvaluation(response.data);
         setAnswer('');
       })
       .catch((error) => {
-        setError('Fetch error: ' + error.message);
+        console.error('Fetch error:', error);
       });
   };
 
   const evaluateQuestions = () => {
-    fetch('http://localhost:8080/api/evaluate')
+    axios
+      .get('http://localhost:8080/evaluate')
       .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.text(); // Parse response text
-      })
-      .then((data) => {
-
-        setEvaluation(data);
+        setEvaluation(response.data);
       })
       .catch((error) => {
-        setError('Fetch error: ' + error.message);
+        console.error('Fetch error:', error);
       });
   };
 
@@ -113,7 +111,7 @@ console.log(error)
           interimTranscript += event.results[i][0].transcript;
         }
       }
-      setTranscript((prevTranscript) => prevTranscript + interimTranscript);
+      setTranscript(transcript + interimTranscript);
     };
 
     recognition.onend = () => {
@@ -146,13 +144,11 @@ console.log(error)
       <p>{evaluation}</p>
       <div className="speech-recognition">
         <button onClick={listening ? stopListening : startListening}>
-          <AiOutlineAudio /> {/* Microphone icon */}
-          {listening ? 'Stop Listening' : 'Start Listening'}
+          <AiOutlineAudio /> {listening ? 'Stop Listening' : 'Start Listening'}
         </button>
         {listening && <span>Listening...</span>}
         <span>{transcript}</span>
       </div>
-      {error && <div className="error">{error}</div>}
     </div>
   );
 };
