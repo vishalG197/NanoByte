@@ -3,7 +3,7 @@ import { AiOutlineAudio } from 'react-icons/ai';
 import '../styles/chat.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 const ChatComponent = () => {
   const { id } = useParams();

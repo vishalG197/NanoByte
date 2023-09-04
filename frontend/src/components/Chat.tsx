@@ -15,7 +15,7 @@ const ChatComponent = () => {
 
   useEffect(() => {
     if (id === '1') {
-      generateOpenAIResponse("one mern random interview quation")
+    
       setSection('mern');
     } else if (id === '2') {
       setSection('java');
@@ -44,30 +44,7 @@ const ChatComponent = () => {
       });
   };
 
-  const generateOpenAIResponse = (userMessage:string) => {
-    // Replace 'YOUR_OPENAI_API_KEY' with your actual OpenAI API key
-    const apiKey = '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';
-
-    const data = {
-      prompt: userMessage,
-      max_tokens: 50, // Adjust the max tokens as needed
-    };
-
-    axios
-      .post('https://api.openai.com/v1/engines/gpt-3.5-turbo/completions', data, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
-        },
-      })
-      .then((response) => {
-        const generatedResponse = response.data.choices[0].text;
-        setQuestion(generatedResponse);
-      })
-      .catch((error) => {
-        console.error('OpenAI API error:', error);
-      });
-  };
+  
 
   const submitAnswer = () => {
     axios
